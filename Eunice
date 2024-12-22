@@ -1,0 +1,232 @@
+<!DOCTYPE html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Christmas</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #welcome {
+            font-size: 2rem;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        #animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
+            overflow: hidden;
+            display: none;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10%;
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh);
+                opacity: 0;
+            }
+        }
+
+        #message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            opacity: 0;
+            animation: fade-in 3s forwards 5s;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="welcome">Click to enter a magical Christmas experience!</div>
+
+    <div id="animation">
+        <div id="message">Happy Christmas Eunice</div>
+    </div>
+
+    <script>
+        const welcome = document.getElementById('welcome');
+        const animation = document.getElementById('animation');
+        const createSnowflake = () => {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        };
+
+        welcome.addEventListener('click', () => {
+            welcome.style.display = 'none';
+            animation.style.display = 'block';
+
+            for (let i = 0; i < 100; i++) {
+                setTimeout(createSnowflake, i * 50);
+            }
+        });
+    </script>
+</body>
+</html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Christmas</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #welcome {
+            font-size: 2rem;
+            cursor: pointer;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        #welcome:hover {
+            transform: scale(1.1);
+            color: #ffdd57;
+        }
+
+        .scene {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        #scene1 {
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
+            animation: fade-in-out 6s forwards;
+        }
+
+        #scene2 {
+            background: linear-gradient(to bottom, #4a148c, #880e4f);
+        }
+
+        #scene3 {
+            background: linear-gradient(to bottom, #0d47a1, #42a5f5);
+        }
+
+        #final {
+            background: linear-gradient(to bottom, #1b5e20, #4caf50);
+        }
+
+        @keyframes fade-in-out {
+            0% {
+                opacity: 0;
+            }
+            25%, 75% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .message {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            color: #fff;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="welcome">Click to enter a magical Christmas experience!</div>
+
+    <div id="scene1" class="scene">
+        <div class="message">Even in the coldest winters, your warmth is all I need. ❄️❤️</div>
+    </div>
+
+    <div id="scene2" class="scene">
+        <div class="message">Like the stars on a winter night, your light guides my way. ✨🌌</div>
+    </div>
+
+    <div id="scene3" class="scene">
+        <div class="message">No matter how silent the night, your presence is my melody. 🎶🎄</div>
+    </div>
+
+    <div id="final" class="scene">
+        <div class="message">Happy Christmas Eunice 🎄✨<br>I may not always have the right words, but my love for you will always remain. ❤️</div>
+    </div>
+
+    <script>
+        const welcome = document.getElementById('welcome');
+        const scenes = document.querySelectorAll('.scene');
+
+        let currentScene = 0;
+
+        const showScene = (index) => {
+            if (index > 0) {
+                scenes[index - 1].style.display = 'none';
+            }
+            scenes[index].style.display = 'flex';
+
+            if (index < scenes.length - 1) {
+                setTimeout(() => showScene(index + 1), 6000);
+            }
+        };
+
+        welcome.addEventListener('click', () => {
+            welcome.style.display = 'none';
+            showScene(0);
+        });
+    </script>
+</body>
+</html>
